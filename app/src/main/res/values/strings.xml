@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Easy Converter</string>
+    <!--    <string-array name="quantities">-->
+    <!--        <item>Выберете:</item>-->
+    <!--        <item>Километры</item>-->
+    <!--        <item>Метры</item>-->
+    <!--        <item>Сантиметры</item>-->
+    <!--    </string-array>-->
 </resources>
