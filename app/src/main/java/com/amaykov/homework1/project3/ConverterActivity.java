@@ -77,7 +77,7 @@ public class ConverterActivity extends AppCompatActivity {
                     if(varFrom == varTo)
                     {
                         text1 = number.getText().toString() +" " + varFrom + " перевести в " + varTo + " будет:";
-                        text2 = number.getText().toString();
+                        text2 = number.getText().toString()+" "+ varTo;
                     }
                     else
                     {
