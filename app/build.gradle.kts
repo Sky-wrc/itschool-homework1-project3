@@ -3,13 +3,13 @@ plugins {
 }
 
 android {
-    namespace = "com.amaykov.homework1.project1"
+    namespace = "com.amaykov.homework1.project3"
     compileSdk {
         version = release(36)
     }
 
     defaultConfig {
-        applicationId = "com.amaykov.homework1.project1"
+        applicationId = "com.amaykov.homework1.project3"
         minSdk = 23
         targetSdk = 36
         versionCode = 1
