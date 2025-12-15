@@ -1,6 +1,7 @@
 package com.amaykov.homework1.project3;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -31,7 +32,7 @@ public class ConverterActivity extends AppCompatActivity {
         number = findViewById(R.id.editTextNumberDecimal);
         Button convert = findViewById(R.id.button);
 
-        String[] quantities = {"Выберите:", "Километр", "Метр", "Сантиметр"};
+        String[] quantities = {"Выберите:", "км", "м", "см"};
 
         ArrayAdapter<String> adapter = new ArrayAdapter<> (this, android.R.layout.simple_spinner_item, quantities);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -52,6 +53,8 @@ public class ConverterActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+        
+
 
         convert.setOnClickListener(new View.OnClickListener() {
         @Override
@@ -63,24 +66,63 @@ public class ConverterActivity extends AppCompatActivity {
             String text2="";
             String varFrom = from.getSelectedItem().toString();
             String varTo = to.getSelectedItem().toString();
-            if(varFrom != "Выберите:" && varTo != "Выберите:")
-            {
-                if(varFrom == varTo)
-                {
-                    text1 = number.getText().toString() +" " + varFrom + " перевести в " + varTo + " будет:";
-                    text2 = number.getText().toString();
-                }
-            }
-            else
-            {
-                text1 = "ошибка";
-                text2 = "Вы не выбрали что во что конвертировать";
-            }
             if(number.getText().toString().isEmpty())
             {
                 text1 = "ошибка";
                 text2 = "Вы ничего не ввели";
             }
+            else
+                if(varFrom != "Выберите:" && varTo != "Выберите:")
+                {
+                    if(varFrom == varTo)
+                    {
+                        text1 = number.getText().toString() +" " + varFrom + " перевести в " + varTo + " будет:";
+                        text2 = number.getText().toString();
+                    }
+                    else
+                    {
+                        if(varFrom == "км")
+                            switch (varTo){
+                                case "см":
+                                    text1 = number.getText().toString() +" " + varFrom + " перевести в " + varTo + " будет:";
+                                    text2 = String.valueOf(Double.parseDouble(number.getText().toString()) * 100_000)+" "+ varTo;
+                                    break;
+                                case "м":
+                                    text1 = number.getText().toString() +" " + varFrom + " перевести в " + varTo + " будет:";
+                                    text2 = String.valueOf(Double.parseDouble(number.getText().toString()) * 1000) +" "+ varTo;
+                                    break;
+                            }
+                        if(varFrom == "см")
+                            switch (varTo){
+                                case "км":
+                                    text1 = number.getText().toString() +" " + varFrom + " перевести в " + varTo + " будет:";
+                                    text2 = String.valueOf(Double.parseDouble(number.getText().toString()) * 0.00001)+" "+ varTo;
+                                    break;
+                                case "м":
+                                    text1 = number.getText().toString() +" " + varFrom + " перевести в " + varTo + " будет:";
+                                    text2 = String.valueOf(Double.parseDouble(number.getText().toString()) * 0.01) +" "+ varTo;
+                                    break;
+                            }
+                        if(varFrom == "м")
+                            switch (varTo){
+                                case "км":
+                                    text1 = number.getText().toString() +" " + varFrom + " перевести в " + varTo + " будет:";
+                                    text2 = String.valueOf(Double.parseDouble(number.getText().toString()) * 0.001)+" "+ varTo;
+                                    break;
+                                case "см":
+                                    text1 = number.getText().toString() +" " + varFrom + " перевести в " + varTo + " будет:";
+                                    text2 = String.valueOf(Double.parseDouble(number.getText().toString()) * 100) +" "+ varTo;
+                                    break;
+                            }
+
+                    }
+                }
+                else
+                {
+                    text1 = "ошибка";
+                    text2 = "Вы не выбрали что во что конвертировать";
+                }
+
             intent.putExtra("KEY_STRING1", text1);
             intent.putExtra("KEY_STRING2", text2);
 
